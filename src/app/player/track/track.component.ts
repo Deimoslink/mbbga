@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { AudioTrack } from '../models/audiotrack';
 
 @Component({
@@ -6,7 +6,7 @@ import { AudioTrack } from '../models/audiotrack';
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.css']
 })
-export class TrackComponent implements OnInit {
+export class TrackComponent implements OnInit, AfterViewInit {
 
   @Input()
   audiotrack!: AudioTrack;
@@ -23,6 +23,10 @@ export class TrackComponent implements OnInit {
         _me.audio.pause();
       }
     });
+  }
+  
+  ngAfterViewInit() {
+    console.log(this.audio);
   }
 
 }
